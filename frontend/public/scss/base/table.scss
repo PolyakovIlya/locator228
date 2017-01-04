@@ -1,0 +1,59 @@
+
+
+.table{
+  display: block;
+
+  .row{
+      display: block;
+      background-color: #efefef;
+      border: solid 1px #bfbfbf;
+  }
+
+  .row-content{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+
+    height: 60px;
+  }
+
+  .col{
+      display: block;
+      flex-grow: 1;
+      box-sizing: border-box;
+      position: relative;
+
+      &:after{
+        display: block;
+        content: "";
+        width: 2px;
+        height: 36px;
+        background: #d9d9d9;
+        position: absolute;
+        top: 12px;
+        right: 0;
+        left: auto;
+
+      }
+  }
+
+  .col-content{
+    display: flex;
+    height: 100%;
+    font-size: 19px;
+    justify-content: center;
+    align-items: center;
+
+    &.left{
+      justify-content: flex-start;
+    }
+
+    &.space-around{
+      justify-content: space-around;
+    }
+  }
+}
