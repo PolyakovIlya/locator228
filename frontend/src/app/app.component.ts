@@ -4,7 +4,8 @@ import '../../public/scss/styles.scss';
 import './app.component.scss';
 
 @Component({
-    selector: 'my-app',
+    moduleId: module.id,
+    selector: 'app',
     templateUrl: './app.component.html',
 })
 export class AppComponent {

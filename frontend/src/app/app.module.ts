@@ -1,18 +1,44 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { AppComponent } from './app.component';
+import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule }    from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
-import { ComponentsModule } from "../components/components.module";
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers/index';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { BaseRequestOptions } from '@angular/http';
+
+import { AppComponent }  from './app.component';
+import { routing }        from './app.routing';
+
+import {AuthGuard} from './_guards'
+import {AuthenticationService, UserService} from './_services'
+import {LoginComponent} from './components/login'
+import {HomeComponent} from './components/home'
+
+import { ComponentsModule } from "./components/components.module";
 
 @NgModule({
     imports: [
-        BrowserModule, ComponentsModule
+        BrowserModule,
+        ComponentsModule,
+        HttpModule,
+        routing
     ],
     declarations: [
-        AppComponent
+        AppComponent,
+        LoginComponent,
+        HomeComponent
     ],
     providers: [
+        AuthGuard,
+        AuthenticationService,
+        UserService,
 
+        //for fake backend
+        fakeBackendProvider,
+        MockBackend,
+        BaseRequestOptions
     ],
     bootstrap: [ AppComponent ]
 })
