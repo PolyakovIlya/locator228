@@ -1,0 +1,13 @@
+.idea
+.DS_Store
+node_modules
+jspm_packages
+npm-debug.*
+link-checker-results.txt
+frontend/src/app/**/*.js
+frontend/*.js.map
+frontend/node_modules
+frontend/e2e/**/*.js
+frontend/e2e/**/*.js.map
+frontend/_test-output
+frontend/_temp
