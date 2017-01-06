@@ -4,15 +4,15 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers/index';
+import { fakeBackendProvider } from './helpers/index';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
 
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
 
-import {AuthGuard} from './_guards'
-import {AuthenticationService, UserService} from './_services'
+import {AuthGuard} from './guards'
+import {AuthenticationService, UserService} from './services'
 import {LoginComponent} from './components/login'
 import {HomeComponent} from './components/home'
 
