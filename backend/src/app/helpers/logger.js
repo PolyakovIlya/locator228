@@ -3,7 +3,7 @@
  */
 import winston from 'winston';
 
-export default new window.Logger({
+export default new winston.Logger({
     transports: [
         new winston.transports.Console({
             level: (process.env.NODE_ENV === 'production') ? 'info' : 'debug',

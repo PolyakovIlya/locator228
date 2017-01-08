@@ -11,6 +11,7 @@ const router = Router();
 router.use('/auth', authController);
 
 router.get('/', (req, res, next) => {
+    console.log('index');
     res.render('index', { title: 'Express' });
 });
 

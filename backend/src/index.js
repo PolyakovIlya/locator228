@@ -11,9 +11,14 @@ import helmet from 'helmet';
 
 import * as checkAuthToken from './app/middlewares/auth-token'
 import controllers from './app/controllers'
+
+import config from './config/config'
 import logger from './app/helpers/logger'
 
 const app = express();
+app.set('view engine', 'jade');
+app.set('views', path.join(config.root, 'app/views'));
+app.use(express.static(path.join(config.root, 'static')));
 
 //middlewares
 app.use(bodyParser.json());
@@ -40,16 +45,23 @@ app.use((err, req, res, next) => {
     // set locals, only providing error in development
     const sc = err.status || 500;
     res.status(sc);
-    res.render('error', {
-        status: sc,
-        message: err.message,
-        stack: config.env === 'development' ? err.stack : ''
-    });
+    res.json(err.message);
+    // res.render('error', {
+    //     status: sc,
+    //     message: err.message,
+    //     stack: config.env === 'development' ? err.stack : ''
+    // });
 });
 
-http.createServer((req, res) => {
+// http.createServer((req, res) => {
+//
+// }).listen(1337, 'localhost');
 
-}).listen(1337, 'localhost');
-
-// app.listen(1337);
-console.log('Serving deals on localhost:1337');
+const server = app.listen(config.port, () => {
+    logger.info(`listening on port ${config.port}`);
+});
+process.on('SIGINT', () => {
+    logger.info('shutting down!');
+    server.close();
+    process.exit();
+});
