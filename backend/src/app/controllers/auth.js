@@ -3,10 +3,22 @@
  */
 import {Router} from 'express'
 
+import models from '../models'
+
 const router = Router();
 
 router.get('/', (req, res, next) => {
-    res.send('respond with a resource auth');
+    res.json('respond with a resource auth');
+});
+
+router.get('/users', (req, res, next) => {
+    models.User.findAll()
+        .then(users => {
+            res.json(users);
+        })
+        .catch(err => {
+
+        });
 });
 
 export default router;

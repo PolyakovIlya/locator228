@@ -4,6 +4,7 @@
 import {Router} from 'express';
 
 import authController from './auth'
+import models from '../models'
 
 const router = Router();
 
@@ -12,7 +13,7 @@ router.use('/auth', authController);
 
 router.get('/', (req, res, next) => {
     console.log('index');
-    res.render('index', { title: 'Express' });
+    res.json('228');
 });
 
 export default router;

@@ -1,12 +1,15 @@
 /**
  * Created by ilyapolyakov on 1/6/17.
  */
-import {User} from '../models/user'
+import models from '../models'
+// import {User} from '../models/user'
 
 export default (req, res, next) => {
-    User.findOne({
-        where: {username: req.body.username}
-    }).then((user) => {
-        next();
-    });
+    // models.User.findOne({
+    //     where: {username: req.body.username}
+    // }).then((user) => {
+    //     console.log('cb');
+    //     next();
+    // });
+    next();
 };

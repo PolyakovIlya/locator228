@@ -5,9 +5,10 @@ import path from 'path';
 
 export default {
     // address of postegre
-    db: process.env.MONGOURI || 'mongodb://localhost:27017/test',
-    user: process.env.DB_USER,
-    pass: process.env.DB_PASS,
+    dburi: process.env.POSTGRESURI || 'localhost:5432',
+    dbname: 'postgres',
+    user: process.env.DB_USER || '',
+    pass: process.env.DB_PASS || '',
 
     // environment
     env: process.env.NODE_ENV || 'development',

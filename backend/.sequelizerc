@@ -1,0 +1,8 @@
+import path from 'path'
+
+export default {
+    'config': path.resolve('./src/app/config', 'config.json'),
+    'migrations-path': path.resolve('./src/app', 'migrations'),
+    'models-path': path.resolve('./server', 'models'),
+    'seeders-path': path.resolve('./server', 'seeders')
+}

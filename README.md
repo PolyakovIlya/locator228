@@ -5,3 +5,9 @@
 sudo npm i
 
 npm start
+
+#**Backend**
+
+
+
+#**Sequelize Migrations**
