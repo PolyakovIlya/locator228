@@ -1,9 +1,8 @@
 export default function(sequelize, DataTypes) {
-  const User = sequelize.define('User', {
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    email: DataTypes.STRING,
-    role: DataTypes.STRING
+  const Zone = sequelize.define('Zone', {
+    name: DataTypes.STRING,
+    latitude: DataTypes.STRING,
+    longitude: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
@@ -11,5 +10,5 @@ export default function(sequelize, DataTypes) {
       }
     }
   });
-  return User;
+  return Zone;
 };

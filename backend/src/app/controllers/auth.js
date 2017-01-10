@@ -4,6 +4,7 @@
 import {Router} from 'express'
 
 import models from '../models'
+import logger from '../../app/helpers/logger'
 
 const router = Router();
 
@@ -17,7 +18,18 @@ router.get('/users', (req, res, next) => {
             res.json(users);
         })
         .catch(err => {
+            res.json(err);
+        });
+});
 
+router.post('/addUser', (req, res, next) => {
+    console.log(req.body);
+    models.User.create(req.body)
+        .then(user => {
+            res.json(user);
+        })
+        .catch(err => {
+            res.json(err);
         });
 });
 
