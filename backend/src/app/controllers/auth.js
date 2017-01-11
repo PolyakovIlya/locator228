@@ -3,8 +3,10 @@
  */
 import {Router} from 'express'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 import models from '../models'
+import config from '../../config/config'
 import logger from '../../app/helpers/logger'
 
 const router = Router();
@@ -42,6 +44,8 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/register', (req, res, next) => {
+
+    console.log(req.body);
     bcrypt.hash(req.body.password, saltRounds).then(hash => {
         //store hash in password DB
         models.User.create(
@@ -52,7 +56,13 @@ router.post('/register', (req, res, next) => {
                 role: 'user'
             })
             .then(user => {
-                res.json(user);
+                let token = jwt.sign(user, config.secret, {
+                    expiresIn: 86400 // expires in 24 hours
+                });
+                console.log(token);
+                res.json({
+                    token: token
+                });
             })
             .catch(err => {
                 res.json(err);

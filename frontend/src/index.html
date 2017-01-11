@@ -3,14 +3,34 @@
 <head>
     <base href="/">
     <title>Angular With Webpack</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="" />
 </head>
 <body>
-    <my-app>Loading...</my-app>
-    <form action="http://localhost:1337/auth/addUser" method="post">
-        <input name="username">
-        <input type="submit"/>
-    </form>
+    <app>Loading...</app>
+    <script>
+        function initMap() {
+            var myLatLng = {lat: -25.363, lng: 131.044};
+
+            // Create a map object and specify the DOM element for display.
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: myLatLng,
+                scrollwheel: false,
+                zoom: 4
+            });
+
+            // Create a marker and set its position.
+            var marker = new google.maps.Marker({
+                map: map,
+                position: myLatLng,
+                title: 'Hello World!'
+            });
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcG8Sv84JS3K5YmDG-geW-X45X10-bEHI&callback=initMap"
+            async defer></script>
 </body>
 </html>

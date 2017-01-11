@@ -1,37 +1,31 @@
 /**
- * Created by ilyapolyakov on 1/5/17.
+ * Created by ilyapolyakov on 1/10/17.
  */
-import {Component, OnInit} from '@angular/core'
+import {Component} from '@angular/core'
 import {Router} from '@angular/router'
 
 import {AuthenticationService} from '../../services'
 
 @Component({
-    templateUrl: 'login.component.html'
+    templateUrl: 'register.component.html'
 })
 
-export class LoginComponent implements OnInit {
+export class RegisterComponent {
     model: any = {};
     loading = false;
     error = '';
 
     constructor(private router: Router, private authenticationService: AuthenticationService) {}
 
-    ngOnInit() {
-
-        //reset login status
-        this.authenticationService.logout()
-    }
-
-    login() {
+    register() {
         this.loading = true;
 
-        this.authenticationService.login(this.model.username, this.model.password)
+        this.authenticationService.register(this.model.username, this.model.password, this.model.email)
             .subscribe(result => {
                 if(result === true) {
                     this.router.navigate(['/']);
                 } else {
-                    this.error = 'Wrong username or password';
+                    this.error = 'user already exist';
                     this.loading = false;
                 }
             });

@@ -9,7 +9,7 @@ import compress from 'compression';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 
-import * as checkAuthToken from './app/middlewares/auth-token'
+import middlewares from './app/middlewares'
 import controllers from './app/controllers'
 import models from './app/models'
 
@@ -22,12 +22,43 @@ app.set('views', path.join(config.root, 'app/views'));
 app.use(express.static(path.join(config.root, 'static')));
 
 //middlewares
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compress());
 app.use(cookieParser());
 app.use(helmet());
-app.use(checkAuthToken.default);
+app.use((req, res, next) => {
+    let token = req.body.token || req.params('token') || req.headers['x-access-token'];
+    console.log(token);
+    // decode token
+    if (token) {
+        // verifies secret and checks exp
+        jwt.verify(token, config.secret, (err, decoded) => {
+            if (err) {
+                return res.json({success: false, message: 'Failed to authenticate token.'});
+            } else {
+                // if everything is good, save to request for use in other routes
+                req.decoded = decoded;
+                next();
+            }
+        });
+    } else {
+        // if there is no token
+        // return an error
+        return res.status(403).send({
+            success: false,
+            message: 'No token provided.'
+        });
+
+    }
+    next();
+});
 
 //set all controllers
 app.use('/', controllers);

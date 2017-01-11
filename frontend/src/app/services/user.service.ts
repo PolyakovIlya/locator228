@@ -7,7 +7,7 @@ import {Observable} from 'rxjs'
 import 'rxjs/add/operator/map'
 
 import {AuthenticationService} from './index'
-import {User} from './.'
+import {User} from '../models/user'
 
 @Injectable()
 export class UserService {

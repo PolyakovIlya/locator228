@@ -6,6 +6,10 @@ sudo npm i
 
 npm start
 
+**launch**
+cd frontend
+npm run start
+
 #**Backend**
 
 
