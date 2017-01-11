@@ -1,18 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
+import { FormsModule }    from '@angular/forms';
+import { AgmCoreModule } from 'angular2-google-maps/ts/core';
 
-import { TableComponent } from "./table/table.component";
-
+import { MapComponent } from './map'
+import { ToolsComponent } from './tools'
 
 @NgModule({
     imports: [
-        BrowserModule
+        BrowserModule,
+        FormsModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyCcG8Sv84JS3K5YmDG-geW-X45X10-bEHI'
+        })
     ],
     declarations: [
-        TableComponent
+        MapComponent,
+        ToolsComponent
     ],
     exports: [
-        TableComponent
+        MapComponent,
+        ToolsComponent
     ]
 })
 

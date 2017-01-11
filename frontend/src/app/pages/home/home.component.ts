@@ -3,8 +3,8 @@
  */
 import {Component, OnInit} from '@angular/core'
 
-import {User} from '../../models'
-import {UserService} from '../../services'
+import {User} from '../../models/user'
+import {UserService} from '../../services/user.service'
 
 @Component({
     templateUrl: 'home.component.html'
@@ -16,9 +16,9 @@ export class HomeComponent implements OnInit {
     constructor(private userService: UserService) {};
 
     ngOnInit() {
-        // this.userService.getUsers()
-        //     .subscribe(users => {
-        //         this.users = users;
-        //     })
+        this.userService.getUsers()
+            .subscribe(users => {
+                this.users = users;
+            })
     }
 }

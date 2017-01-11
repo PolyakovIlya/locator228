@@ -3,9 +3,9 @@
  */
 import {Routes, RouterModule} from '@angular/router'
 
-import {LoginComponent} from './components/login'
-import {RegisterComponent} from './components/register'
-import {HomeComponent} from './components/home'
+import {LoginComponent} from './pages/login'
+import {RegisterComponent} from './pages/register'
+import {HomeComponent} from './pages/home'
 import {AuthGuard} from './guards'
 
 const appRoutes: Routes = [

@@ -3,10 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-// import { AgmCoreModule } from 'angular2-google-maps/core';
-
-import { requestOptionsProvider }   from './default-request-options.service';
-
 // used to create fake backend
 // import { fakeBackendProvider } from './helpers/index';
 // import { MockBackend, MockConnection } from '@angular/http/testing';
@@ -16,37 +12,27 @@ import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
 
 import {AuthGuard} from './guards'
-import {AuthenticationService, UserService} from './services'
-import {LoginComponent} from './components/login'
-import {RegisterComponent} from './components/register/register.component'
-import {HomeComponent} from './components/home'
-import {MapComponent} from './components/map'
+import { AuthenticationService, UserService } from './services'
 
-import { ComponentsModule } from "./components/components.module";
+import { ComponentsModule } from './components/components.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
     imports: [
         BrowserModule,
         ComponentsModule,
+        PagesModule,
         FormsModule,
         HttpModule,
         routing
-        // AgmCoreModule.forRoot({
-        //     apiKey: 'AIzaSyCcG8Sv84JS3K5YmDG-geW-X45X10-bEHI'
-        // })
     ],
     declarations: [
-        AppComponent,
-        LoginComponent,
-        RegisterComponent,
-        HomeComponent,
-        MapComponent
+        AppComponent
     ],
     providers: [
         AuthGuard,
         AuthenticationService,
-        UserService,
-        requestOptionsProvider
+        UserService
 
         //for fake backend
         // fakeBackendProvider,
