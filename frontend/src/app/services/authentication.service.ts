@@ -21,7 +21,10 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string): Observable<boolean> {
-        return this.http.post(this.url + '/auth/login', JSON.stringify({username: username, password: password}))
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post(this.url + '/auth/login', JSON.stringify({username: username, password: password}), options)
             .map((response: Response) => {
                 console.log(response);
                 let token = response.json() && response.json().token;
@@ -47,7 +50,7 @@ export class AuthenticationService {
         let options = new RequestOptions({ headers: headers });
         let body = {username: username, password: password, email: email};
 
-        return this.http.post(this.url + '/auth/register', JSON.stringify(body))
+        return this.http.post(this.url + '/auth/register', JSON.stringify(body), options)
             .map((response: Response) => {
                 console.log(response);
                 let token = response.json() && response.json().token;

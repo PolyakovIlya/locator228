@@ -15,3 +15,7 @@ npm run start
 
 
 #**Sequelize Migrations**
+
+sequelize db:migrate
+
+sequelize db:seed:all

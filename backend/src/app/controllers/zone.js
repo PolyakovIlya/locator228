@@ -11,6 +11,7 @@ const router = Router();
 router.get('/', (req, res, next) => {
     models.Zone.findAll()
         .then(zones => {
+            console.log(zones);
             res.json(zones);
         })
         .catch(err => {

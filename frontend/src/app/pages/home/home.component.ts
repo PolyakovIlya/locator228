@@ -7,18 +7,29 @@ import {User} from '../../models/user'
 import {UserService} from '../../services/user.service'
 
 @Component({
-    templateUrl: 'home.component.html'
+    templateUrl: 'home.component.html',
+    styleUrls: ['./home.component.scss'],
 })
 
 export class HomeComponent implements OnInit {
     users: User[] = [];
 
-    constructor(private userService: UserService) {};
+    filter: Object = {
+        hideFish: false,
+        hideSeas: false
+    };
+
+    constructor() {};
+
+    changeFilterHandler(evt: Object) {
+        console.log(evt);
+        var newValue={};
+        newValue[evt["filterName"]] =  evt["value"];
+
+        this.filter= Object.assign({},this.filter,newValue);
+    }
 
     ngOnInit() {
-        this.userService.getUsers()
-            .subscribe(users => {
-                this.users = users;
-            })
+
     }
 }

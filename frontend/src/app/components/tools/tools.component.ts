@@ -1,22 +1,36 @@
 /**
  * Created by ilyapolyakov on 1/11/17.
  */
-import {Component, OnInit} from '@angular/core'
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core'
+
 
 @Component({
     selector: 'ui-tools',
-    templateUrl: 'tools.component.html'
+    templateUrl: 'tools.component.html',
+    styleUrls: ['./tools.component.scss'],
 })
 
-export class ToolsComponent implements OnInit {
+export class ToolsComponent {
+    @Input()
+    filters: Object;
 
+    @Output()
+    changeFilter: EventEmitter<Object> = new EventEmitter<Object>();
+
+    public checkedFish: boolean = false;
+    public checkedSea: boolean = false;
 
     constructor() {};
 
-    ngOnInit() {
-        // this.userService.getUsers()
-        //     .subscribe(users => {
-        //         this.users = users;
-        //     })
+    ngOnInit(){
+        this.checkedFish = this.filters && this.filters["checkedFish"];
+        this.checkedSea = this.filters && this.filters["checkedSea"];
     }
+
+
+    handlerCheckbox(evt: any, filterName: string) {
+        this.changeFilter.emit({filterName: filterName, value: evt});
+    }
+
+
 }

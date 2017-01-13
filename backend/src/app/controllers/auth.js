@@ -21,6 +21,7 @@ router.post('/login', (req, res, next) => {
     let username = req.body.username,
         password = req.body.password;
 
+
     models.User.findOne(
         {
             where: {
@@ -32,7 +33,13 @@ router.post('/login', (req, res, next) => {
             bcrypt.compare(password, user.password)
                 .then(result => {
                     if(result) {
-                        res.json(result);
+                        jwt.sign({username: req.body.username}, config.secret, {
+                            expiresIn: 86400 // expires in 24 hours
+                        }, (err, token) => {
+                            res.json({
+                                token: token
+                            });
+                        });
                     } else {
                         res.json(result);
                     }
@@ -45,24 +52,39 @@ router.post('/login', (req, res, next) => {
 
 router.post('/register', (req, res, next) => {
 
-    console.log(req.body);
     bcrypt.hash(req.body.password, saltRounds).then(hash => {
         //store hash in password DB
-        models.User.create(
+        console.log(hash);
+
+        models.User.findOrCreate(
             {
-                username: req.body.username,
-                password: hash,
-                email: req.body.email,
-                role: 'user'
+                where: {username: req.body.username},
+
+                defaults: {
+                    username: req.body.username,
+                    password: hash,
+                    email: req.body.email,
+                    role: 'user'
+                }
             })
             .then(user => {
-                let token = jwt.sign(user, config.secret, {
-                    expiresIn: 86400 // expires in 24 hours
-                });
-                console.log(token);
-                res.json({
-                    token: token
-                });
+                let created = user[1];
+                user = user[0];
+
+                if(created) {
+                    jwt.sign({username: req.body.username}, config.secret, {
+                        expiresIn: 86400 // expires in 24 hours
+                    }, (err, token) => {
+
+                        res.json({
+                            token: token
+                        });
+                    });
+                } else {
+                    res.json({
+                        error: 'user already created'
+                    });
+                }
             })
             .catch(err => {
                 res.json(err);

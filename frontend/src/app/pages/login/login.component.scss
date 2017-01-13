@@ -1,0 +1,28 @@
+.bg-auth {
+  background: url("./public/images/bg.jpg");
+  width: 100%;
+  height: 100%;
+}
+
+.block-login {
+  margin: 200px auto;
+  width: 400px;
+  padding: 60px 40px;
+  color: #fff;
+}
+
+.block-login h2 {
+  margin-top: 0;
+}
+
+.btn-login {
+  display: block;
+  min-width: 100px;
+  padding: 10px 40px;
+  background: none;
+  border: 2px #fff solid;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  color: #fff;
+}

@@ -8,6 +8,7 @@ import { AuthGuard } from '../guards'
 import { AuthenticationService, UserService } from '../services'
 
 import { ComponentsModule } from '../components/components.module';
+import { WelcomeComponent } from './welcome'
 import { LoginComponent } from './login'
 import { RegisterComponent } from './register'
 import { HomeComponent } from './home'
@@ -19,11 +20,13 @@ import { HomeComponent } from './home'
         ComponentsModule
     ],
     declarations: [
+        WelcomeComponent,
         LoginComponent,
         RegisterComponent,
         HomeComponent
     ],
     exports: [
+        WelcomeComponent,
         LoginComponent,
         RegisterComponent,
         HomeComponent

@@ -10,8 +10,12 @@
  */
 
 /* Move down content because we have a fixed navbar that is 50px tall */
-body {
+html {
+    height: 100%;
+}
 
+body {
+    height: 100%;
 }
 
 
@@ -108,19 +112,4 @@ body {
 .placeholder img {
     display: inline-block;
     border-radius: 50%;
-}
-
-.header-panel {
-    background: #ccc;
-    border-radius: 50px;
-}
-
-.ui-map {
-    display: block;
-    height: 300px;
-    margin-left: 200px;
-}
-
-.sebm-google-map-container {
-    height: 300px;
 }

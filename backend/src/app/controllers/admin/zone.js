@@ -1,9 +1,6 @@
 /**
  * Created by ilyapolyakov on 1/10/17.
  */
-/**
- * Created by ilyapolyakov on 1/10/17.
- */
 import {Router} from 'express'
 
 import models from '../../models'

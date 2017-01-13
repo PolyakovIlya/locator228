@@ -8,8 +8,9 @@ import bodyParser from 'body-parser';
 import compress from 'compression';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
+import jwt from 'jsonwebtoken';
 
-import middlewares from './app/middlewares'
+import checkAuthToken from './app/middlewares/auth-token'
 import controllers from './app/controllers'
 import models from './app/models'
 
@@ -33,31 +34,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compress());
 app.use(cookieParser());
 app.use(helmet());
-app.use((req, res, next) => {
-    let token = req.body.token || req.params('token') || req.headers['x-access-token'];
-    console.log(token);
-    // decode token
-    if (token) {
-        // verifies secret and checks exp
-        jwt.verify(token, config.secret, (err, decoded) => {
-            if (err) {
-                return res.json({success: false, message: 'Failed to authenticate token.'});
-            } else {
-                // if everything is good, save to request for use in other routes
-                req.decoded = decoded;
-                next();
-            }
-        });
-    } else {
-        // if there is no token
-        // return an error
-        return res.status(403).send({
-            success: false,
-            message: 'No token provided.'
-        });
 
+app.use((req, res, next) => {
+    let token = req.body.token || req.params['token'] || req.headers['x-access-token'];
+
+    if (token) {
+        try {
+            jwt.verify(token, config.secret, (err, decoded) => {
+                if (err) {
+                    return res.json({ success: false, message: 'Failed to authenticate token.' });
+                } else {
+                    // if everything is good, save to request for use in other routes
+                    req.decoded = decoded;
+                    next();
+                }
+            });
+        } catch (err) {
+            return next();
+        }
+    } else {
+        next();
     }
-    next();
 });
 
 //set all controllers
