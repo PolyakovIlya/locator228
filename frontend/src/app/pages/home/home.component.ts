@@ -16,8 +16,12 @@ export class HomeComponent implements OnInit {
 
     filter: Object = {
         hideFish: false,
-        hideSeas: false
+        hideSeas: false,
+        hideTemp: false
     };
+
+
+    selectedFishDesc: FishDesc = null;
 
     constructor() {};
 

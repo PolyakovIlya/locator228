@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'ui-map',
@@ -13,7 +13,11 @@ export class MapComponent {
     @Input()
     filters: Object;
 
+    @Output()
+    fishDescription: EventEmitter<any>;
+
     constructor() {
+        this.fishDescription = new EventEmitter<any>();
         navigator.geolocation.getCurrentPosition(function(pos) {
             console.log(pos);
             //this.lat = pos.coords.latitude;
@@ -166,16 +170,21 @@ export class MapComponent {
             fish: [
                 {
                     name: 'Белуга',
-                    count: 40
+                    count: 40,
+                    info: {
+                        weight: 100,
+                        date_range: ['20/01', '30/06'],
+                        desc: 'норм рыбка, хорошо под пивасик заходит'
+                    }
                 },
-                {
-                    name: 'Камбала',
-                    count: 30
-                },
-                {
-                    name: 'Тарань',
-                    count: 30
-                }
+                // {
+                //     name: 'Камбала',
+                //     count: 30
+                // },
+                // {
+                //     name: 'Тарань',
+                //     count: 30
+                // }
             ]
         }
     ];
@@ -225,8 +234,22 @@ export class MapComponent {
         },
     ];
 
-    circleClick(e: any) {
-        console.log(e);
-        console.log('click');
+    public seaTemp: any = [
+        {
+            label: 'Черное море',
+            latitude: 43.304694,
+            longitude: 34.497070,
+            radius: 300000,
+            temp: [5, 25]
+        },
+    ];
+
+    getContext(){
+        return this
+    }
+
+    fishMarkerClick(item: FishDesc, e: any) {
+        console.log('click', this, item);
+        this.fishDescription.emit(item);
     }
 }

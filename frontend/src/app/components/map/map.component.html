@@ -17,7 +17,8 @@
             <sebm-google-map-marker
                     [latitude]="item.latitude"
                     [longitude]="item.longitude"
-                    [visible]="(filters && filters.hideFish)">
+                    [visible]="(filters && filters.hideFish)"
+                    (markerClick)="(fishMarkerClick.bind(getContext(), item))($event)">
                 <sebm-google-map-info-window>
                     <strong>{{item.label}}</strong><br/>
                     <div *ngFor="let desc of item.fish">
@@ -40,6 +41,23 @@
                 <sebm-google-map-info-window>
                     <strong>{{item.label}}</strong><br/>
                     <strong>Глубина {{item.deep}} м.</strong>
+                </sebm-google-map-info-window>
+            </sebm-google-map-marker>
+        </sebm-google-map-circle>
+
+        <sebm-google-map-circle
+                *ngFor="let item of seaTemp"
+                [latitude]="item.latitude"
+                [longitude]="item.longitude"
+                [radius]="item.radius"
+                [fillColor]="'red'"
+                (circleClick)="circleClick($event)"
+                [visible]="(filters && filters.hideTemp)">
+
+            <sebm-google-map-marker [latitude]="item.latitude" [style.fill]="'red'" [longitude]="item.longitude" [visible]="(filters && filters.hideTemp)">>
+                <sebm-google-map-info-window>
+                    <strong>{{item.label}}</strong><br/>
+                    <strong>Температура от {{item.temp[0]}} - {{item.temp[1]}}  °С.</strong>
                 </sebm-google-map-info-window>
             </sebm-google-map-marker>
         </sebm-google-map-circle>
