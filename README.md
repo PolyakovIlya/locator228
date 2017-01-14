@@ -1,18 +1,26 @@
 #**Frontend**
 
--MAC OS-
-
 sudo npm i
 
 npm start
 
 **launch**
+
 cd frontend
-npm run start
+
+npm start
 
 #**Backend**
 
+sudo npm i
 
+sequelize-cli
+
+**launch**
+
+cd backend
+
+npm run dev
 
 #**Sequelize Migrations**
 

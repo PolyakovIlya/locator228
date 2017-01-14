@@ -23,17 +23,17 @@ export class MapComponent {
 
     public fishZones: any = [
         {
-            label: 'test na pid`ora',
+            label: 'Бурлачья балка',
             latitude: 46.342869,
             longitude: 30.644989,
             radius: 1000,
             fish: [
                 {
-                    name: 'Бычок',
+                    name: 'Судак',
                     count: 50
                 },
                 {
-                    name: 'Beluga',
+                    name: 'Окунь',
                     count: 70
                 }
             ]
@@ -45,11 +45,15 @@ export class MapComponent {
             radius: 37111,
             fish: [
                 {
-                    name: 'Seledka',
-                    count: 30
+                    name: 'Язь',
+                    count: 15
                 },
                 {
-                    name: 'Beluga',
+                    name: 'Лещ',
+                    count: 15
+                },
+                {
+                    name: 'Карп',
                     count: 70
                 }
             ]
@@ -61,12 +65,16 @@ export class MapComponent {
             radius: 24111,
             fish: [
                 {
-                    name: 'Seledka',
+                    name: 'Карась',
                     count: 30
                 },
                 {
-                    name: 'Beluga',
-                    count: 70
+                    name: 'Сазан',
+                    count: 30
+                },
+                {
+                    name: 'Судак',
+                    count: 40
                 }
             ]
         },
@@ -77,12 +85,16 @@ export class MapComponent {
             radius: 27111,
             fish: [
                 {
-                    name: 'Seledka',
-                    count: 30
+                    name: 'Карась',
+                    count: 50
                 },
                 {
-                    name: 'Beluga',
-                    count: 70
+                    name: 'Окунь',
+                    count: 25
+                },
+                {
+                    name: 'Язь',
+                    count: 25
                 }
             ]
         },
@@ -93,11 +105,11 @@ export class MapComponent {
             radius: 33111,
             fish: [
                 {
-                    name: 'Seledka',
+                    name: 'Сом',
                     count: 30
                 },
                 {
-                    name: 'Beluga',
+                    name: 'Карп',
                     count: 70
                 }
             ]
@@ -109,12 +121,60 @@ export class MapComponent {
             radius: 19111,
             fish: [
                 {
-                    name: 'Seledka',
+                    name: 'Карп',
+                    count: 40
+                },
+                {
+                    name: 'Окунь',
+                    count: 60
+                }
+            ]
+        },
+        {
+            label: 'Черное море',
+            latitude: 43.304794,
+            longitude: 32.497070,
+            radius: 319111,
+            fish: [
+                {
+                    name: 'Камбала',
+                    count: 15
+                },
+                {
+                    name: 'Бычки',
+                    count: 15
+                },
+                {
+                    name: 'Катран',
+                    count: 15
+                },
+                {
+                    name: 'Морской окунь',
+                    count: 15
+                },
+                {
+                    name: 'Сельдь',
+                    count: 25
+                }
+            ]
+        },
+        {
+            label: 'Азовское море',
+            latitude: 46.175551,
+            longitude: 35.848145,
+            radius: 115111,
+            fish: [
+                {
+                    name: 'Белуга',
+                    count: 40
+                },
+                {
+                    name: 'Камбала',
                     count: 30
                 },
                 {
-                    name: 'Beluga',
-                    count: 70
+                    name: 'Тарань',
+                    count: 30
                 }
             ]
         }
@@ -126,15 +186,43 @@ export class MapComponent {
             latitude: 43.304694,
             longitude: 34.497070,
             radius: 300000,
-            deep: 220
+            deep: 2200
         },
         {
             label: 'Азовское море',
             latitude: 46.175551,
             longitude: 36.848145,
             radius: 155000,
-            deep: 120
-        }
+            deep: 20
+        },
+        {
+            label: 'Каспийское море',
+            latitude: 41.991140,
+            longitude: 50.625000,
+            radius: 450000,
+            deep: 1024
+        },
+        {
+            label: 'Красное море',
+            latitude: 20.527361,
+            longitude: 38.496094,
+            radius: 550000,
+            deep: 2211
+        },
+        {
+            label: 'Мраморное море',
+            latitude: 40.628546,
+            longitude: 28.300781,
+            radius: 150000,
+            deep: 1300
+        },
+        {
+            label: 'Средиземное море',
+            latitude: 37.490115,
+            longitude: 16.699219,
+            radius: 1050000,
+            deep: 5121
+        },
     ];
 
     circleClick(e: any) {
