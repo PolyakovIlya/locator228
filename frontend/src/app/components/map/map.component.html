@@ -17,12 +17,11 @@
             <sebm-google-map-marker
                     [latitude]="item.latitude"
                     [longitude]="item.longitude"
-                    [visible]="(filters && filters.hideFish)"
-                    (markerClick)="(fishMarkerClick.bind(getContext(), item))($event)">
+                    [visible]="(filters && filters.hideFish)">
                 <sebm-google-map-info-window>
                     <strong>{{item.label}}</strong><br/>
-                    <div *ngFor="let desc of item.fish">
-                        <strong>{{desc.name}}</strong>({{desc.count}})%
+                    <div *ngFor="let desc of item.fish; let i=index">
+                        <strong (click)="(fishMarkerClick.bind(getContext(), item, i))($event)">{{desc.name}}</strong> ({{desc.count}})%
                     </div>
                 </sebm-google-map-info-window>
             </sebm-google-map-marker>

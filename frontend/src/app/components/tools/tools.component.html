@@ -11,16 +11,16 @@
 
     <div class="fish-describe" *ngIf="currentFish">
         <h3 class="tools-title">Описание рыбки:</h3>
-        <div *ngFor="let data of currentFish.fish">
-            <li>Название: {{data.name}}</li>
-            <li>Количество: {{data.count}}%</li>
-            <li>Вес: ~{{data.info.weight}}грамм</li>
+        <div>
+            <li>Название: {{currentFish.name}}</li>
+            <li>Количество: {{currentFish.count}}%</li>
+            <li>Вес: ~{{currentFish.info.weight}}грамм</li>
             <li>Нерест:
-                <span>нач. - {{data.info.date_range[0]}}</span>
-                <span>зак. - {{data.info.date_range[1]}}</span>
+                <span>нач. - {{currentFish.info.date_range[0]}}</span>
+                <span>зак. - {{currentFish.info.date_range[1]}}</span>
             </li>
             <li>Описание:
-                <span>{{data.info.desc}}</span>
+                <span>{{currentFish.info.desc}}</span>
             </li>
         </div>
     </div>

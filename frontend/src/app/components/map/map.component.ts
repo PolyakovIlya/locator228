@@ -177,14 +177,24 @@ export class MapComponent {
                         desc: 'норм рыбка, хорошо под пивасик заходит'
                     }
                 },
-                // {
-                //     name: 'Камбала',
-                //     count: 30
-                // },
-                // {
-                //     name: 'Тарань',
-                //     count: 30
-                // }
+                {
+                    name: 'Камбала',
+                    count: 30,
+                    info: {
+                        weight: 400,
+                        date_range: ['20/01', '30/06'],
+                        desc: 'норм рыбка, хорошо под пивасик заходит'
+                    }
+                },
+                {
+                    name: 'Тарань',
+                    count: 30,
+                    info: {
+                        weight: 200,
+                        date_range: ['20/01', '30/06'],
+                        desc: 'норм рыбка, хорошо под пивасик заходит'
+                    }
+                }
             ]
         }
     ];
@@ -248,8 +258,9 @@ export class MapComponent {
         return this
     }
 
-    fishMarkerClick(item: FishDesc, e: any) {
-        console.log('click', this, item);
-        this.fishDescription.emit(item);
+    fishMarkerClick(item: any, index: number, e: any) {
+        console.log('click', this, item, index);
+        console.log(item.fish[index]);
+        this.fishDescription.emit(item.fish[index]);
     }
 }
