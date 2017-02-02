@@ -11,8 +11,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
 
-import {AuthGuard} from './guards'
-import { AuthenticationService, UserService } from './services'
+import { AuthGuard} from './guards'
+import { AuthenticationService, UserService, SearchService } from './services'
 
 import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
@@ -32,7 +32,8 @@ import { PagesModule } from './pages/pages.module';
     providers: [
         AuthGuard,
         AuthenticationService,
-        UserService
+        UserService,
+        SearchService
 
         //for fake backend
         // fakeBackendProvider,

@@ -13,7 +13,7 @@
             <li><a href="#" (click)="logout()">Logout</a></li>
         </ul>
         <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
+            <input type="text" class="form-control" #input (keyup.enter)="searchInput(input.value)" placeholder="Search...">
         </form>
     </div>
 </div>

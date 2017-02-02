@@ -7,7 +7,7 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 
 import { MapComponent } from './map'
 import { HeaderComponent } from './header'
-import { ToolsComponent } from './tools'
+import { ToolsComponent } from './tools';
 
 @NgModule({
     imports: [

@@ -1,11 +1,12 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import {SearchService} from '../../services/search.service'
 
 @Component({
     selector: 'ui-map',
     templateUrl: './map.component.html',
     styleUrls: ['./map.component.scss'],
 })
-export class MapComponent {
+export class MapComponent implements OnInit {
     title: string = 'My first angular2-google-maps project';
     lat: number = 46.474635;
     lng: number = 30.728760;
@@ -16,7 +17,8 @@ export class MapComponent {
     @Output()
     fishDescription: EventEmitter<any>;
 
-    constructor() {
+
+    constructor(private searchService: SearchService) {
         this.fishDescription = new EventEmitter<any>();
         navigator.geolocation.getCurrentPosition(function(pos) {
             console.log(pos);
@@ -24,6 +26,149 @@ export class MapComponent {
             //this.lng = pos.coords.longitude;
         })
     }
+
+    ngOnInit() {
+        this.searchService.searchText.subscribe((text: string) => {
+            let result = {};
+            this.fish.map((item: any) => {
+                if(item.name == text) {
+                    result = item;
+                }
+            });
+            console.log(result);
+            this.fishDescription.emit(result);
+            // this.fishDescription = result;
+        });
+    }
+
+    public fish: any = [
+        {
+            name: 'Судак',
+            count: 50,
+            info: {
+                weight: 1900,
+                date_range: ['08/03', '11/07'],
+                desc: 'Судак - род лучепёрых рыб из семейства окуневых. Нерест весной при температуре ' +
+                'воды - 12 градусов. В некоторых странах вылов запрещен. '
+            }
+        },
+        {
+            name: 'Окунь',
+            count: 70,
+            info: {
+                weight: 900,
+                date_range: ['08/03', '11/07'],
+                desc: 'Окунь - рыба, которая принадлежит классу лучеперых рыб, ' +
+                'отряду окунеобразных, семейству окуневых (лат. Percidae).' +
+                'Нерест весной при температуре - 7-15 градусов. Обитает как в пресноводных так и морских водоемах. '
+            }
+        },
+        {
+            name: 'Язь',
+            count: 15,
+            info: {
+                weight: 2100,
+                date_range: ['08/03', '11/07'],
+                desc: 'Язь - вид лучепёрых рыб из семейства карповых. Нерест во второй половине весны при ' +
+                'любой температуре. Обитает в пресноводных водоемах или с частично солоноватой водой. '
+            }
+        },
+        {
+            name: 'Лещ',
+            count: 15,
+            info: {
+                weight: 1200,
+                date_range: ['08/03', '11/07'],
+                desc: 'Лещ - единственный представитель рода лещей (Abramis) из семейства карповых (Cyprinidae),' +
+                ' отряда карпообразных (Cypriniformes). Нерест с середины апреля до первых чисел мая. ' +
+                'Обитает в бассейнах Северного, Балтийского, Каспийского, Черного и Азовского морей. '
+            }
+        },
+        {
+            name: 'Карп',
+            count: 70,
+            info: {
+                weight: 1000,
+                date_range: ['08/03', '11/07'],
+                desc: 'Карп - вид пресноводных лучепёрых рыб семейства карповых. Нерест в воде температурой ' +
+                '18-20 градусов в любое время года. Обитает в частных водоемах ' +
+                'и некоторых пресноводных или частично соленых. '
+            }
+        },
+        {
+            name: 'Карась',
+            count: 30,
+            info: {
+                weight: 900,
+                date_range: ['08/03', '11/07'],
+                desc: 'Карась - род лучепёрых рыб семейства карповых. Нерест в апреле при температуре ' +
+                '13-18 градусов. Обитает в бассейне Тихого океана и различных водоемах. '
+            }
+        },
+        {
+            name: 'Сазан',
+            count: 30,
+            info: {
+                weight: 900,
+                date_range: ['08/03', '11/07'],
+                desc: 'Сазан - род лучепёрых рыб семейства карповых. Нерест в апреле при температуре ' +
+                '13-18 градусов. Обитает в бассейне Тихого океана и различных водоемах. '
+            }
+        },
+        {
+            name: 'Камбала',
+            count: 30,
+            info: {
+                weight: 3400,
+                date_range: ['20/01', '30/06'],
+                desc: 'Камбала - морская рыба семейства камбаловых (Pleuronectidae). ' +
+                'Нерест весной при температуре 2-5 градусов. Обитает во всех морских акваториях.'
+            }
+        },
+        {
+            name: 'Бычки',
+            count: 15,
+            info: {
+                weight: 400,
+                date_range: ['08/03', '11/07'],
+                desc: 'Бычки - семейство лучепёрых рыб из отряда окунеобразных (Perciformes). ' +
+                'Нерест в начале марта при любой температуре воды. ' +
+                'Обитают в акватории Черного моря. '
+            }
+        },
+        {
+            name: 'Катран',
+            count: 15,
+            info: {
+                weight: 1200,
+                date_range: ['24/01', '22/07'],
+                desc: 'Катран - морская хрящевая рыба из семейства катрановых акул, ' +
+                'подвид обыкновенного катрана (Squalus acanthias). Нерест с конца ' +
+                'февраля по конец апреля на разных глубинах. Обитает в акватории Черного моря. '
+            }
+        },
+        {
+            name: 'Морской окунь',
+            count: 15,
+            info: {
+                weight: 1300,
+                date_range: ['24/01', '22/07'],
+                desc: 'Окунь - рыба, которая принадлежит классу лучеперых рыб, отряду окунеобразных, ' +
+                'семейству окуневых (лат. Percidae).Нерест весной при температуре - 7-15 градусов. ' +
+                'Обитает как в пресноводных так и морских водоемах. '
+            }
+        },
+        {
+            name: 'Сельдь',
+            count: 25,
+            info: {
+                weight: 2400,
+                date_range: ['24/01', '22/07'],
+                desc: 'Сельдь - ценная промысловая рыба. Нерест в апреле-мае при разной ' +
+                'температуре воды. Обитают в Атлантическом, Тихом и Сверном Ледовитом океанах. '
+            }
+        }
+    ];
 
     public fishZones: any = [
         {
