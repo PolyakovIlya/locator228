@@ -29,15 +29,11 @@ export class MapComponent implements OnInit {
 
     ngOnInit() {
         this.searchService.searchText.subscribe((text: string) => {
-            let result = {};
             this.fish.map((item: any) => {
                 if(item.name == text) {
-                    result = item;
+                    this.fishDescription.emit(item);
                 }
             });
-            console.log(result);
-            this.fishDescription.emit(result);
-            // this.fishDescription = result;
         });
     }
 
