@@ -31,7 +31,7 @@ sequelize
         logger.info('Connection has been established successfully.');
     })
     .catch(err => {
-        logger.warn('Unable to connect to the database:', err);
+        logger.warn('Unable to connect to the database: ', err);
     });
 
 let db = {};
@@ -51,6 +51,14 @@ _.keys(db).forEach(modelName => {
         db[modelName].associate(db);
     }
 });
+
+sequelize
+    .sync()
+    .then(function() {
+        logger.info('success sync');
+    }, function(err) {
+        logger.warn('error sync: ', err);
+    });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
